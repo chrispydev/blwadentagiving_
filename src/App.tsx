@@ -1,33 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import { PaystackButton } from 'react-paystack';
+import React, { useState } from 'react';
+import { usePaystackPayment } from 'react-paystack';
+import { configType } from './types';
 import './App.css';
 
 const App = () => {
-  const publicKey: any = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY;
-  const currency: any = 'GHS';
+  const publicKey = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY;
+  const currency = 'GHS';
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [amountRow, setAmountRow] = useState<any>();
-  // let amount: number = 0;
 
-  const componentProps = {
-    email,
+  const config: configType = {
+    reference: new Date().getTime().toString(),
+    email: email,
     amount: amountRow * 100,
-    currency,
-    metadata: {
-      name,
-      phone,
-    },
-    publicKey,
-    text: 'Give Now',
-    onSuccess: () => {
-      setEmail('');
-      setName('');
-      setPhone('');
-      setAmountRow('');
-    },
-    onClose: () => alert("Wait! You need this oil, don't go!!!!"),
+    publicKey: publicKey,
+    currency: currency,
+  };
+
+  // you can call this function anything
+  const onSuccess = (reference: any) => {
+    // Implementation for whatever you want to do with reference and after success call.
+    setName('');
+    setEmail('');
+    setPhone('');
+    setAmountRow('');
+    alert('Thank you for giving.');
+    // console.log(reference);
+  };
+
+  // you can call this function anything
+  const onClose = () => {
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    console.log('closed');
+  };
+
+  const PaystackHookExample = () => {
+    const initializePayment = usePaystackPayment(config);
+    return (
+      <div>
+        <button
+          className='bg-yellow-400 py-2 px-6 rounded-md shadow-lg text-gray-100 uppercase font-medium'
+          onClick={() => {
+            initializePayment(onSuccess, onClose);
+          }}
+        >
+          Give Now
+        </button>
+      </div>
+    );
   };
 
   return (
@@ -99,10 +121,7 @@ const App = () => {
           </div>
 
           <div className='flex justify-center items-center'>
-            <PaystackButton
-              className='bg-yellow-400 py-2 px-6 rounded-md shadow-lg text-gray-100 uppercase font-medium'
-              {...componentProps}
-            />
+            <PaystackHookExample />
           </div>
         </div>
       </div>
