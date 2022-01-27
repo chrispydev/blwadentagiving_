@@ -54,13 +54,13 @@ const App = () => {
 
   return (
     <>
-      <div className='flex  flex-col justify-center items-center h-screen font-sans'>
+      <div className='selection:bg-yellow-500 selection:text-white flex flex-col justify-center items-center h-screen font-sans'>
         <div className='flex justify-center py-3'>
           <h1 className='text-3xl font-black bg-slate-700 p-4 rounded text-white shadow-xl'>
             CEC <span className='text-yellow-500'>ADENTA</span>
           </h1>
         </div>
-        <div className='grid grid-cols-1 gap-8 shadow-lg p-4'>
+        <div className='grid grid-cols-1 gap-8 shadow-lg p-4 border border-yellow-500 rounded-md'>
           <div className='flex flex-col md:flex-row justify-between md:items-center items-start space-y-4 flex-1'>
             <label className='mr-8 block text-sm text-gray-900' htmlFor='fName'>
               Full Name
