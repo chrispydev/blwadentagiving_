@@ -7,13 +7,17 @@ const App = () => {
   const publicKey = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY;
   const currency = 'GHS';
   const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastname, setLastname] = useState('');
   const [phone, setPhone] = useState('');
   const [amountRow, setAmountRow] = useState<any>();
 
   const config: configType = {
     reference: new Date().getTime().toString(),
     email: email,
+    firstname: firstName,
+    lastname: lastname,
+    phone: phone,
     amount: amountRow * 100,
     publicKey: publicKey,
     currency: currency,
@@ -22,7 +26,8 @@ const App = () => {
   // you can call this function anything
   const onSuccess = (reference: any) => {
     // Implementation for whatever you want to do with reference and after success call.
-    setName('');
+    setFirstName('');
+    setLastname('');
     setEmail('');
     setPhone('');
     setAmountRow('');
@@ -60,36 +65,59 @@ const App = () => {
             CEC <span className='text-yellow-500'>ADENTA</span>
           </h1>
         </div>
-        <div className='grid grid-cols-1 gap-8 shadow-lg p-4 border border-yellow-500 rounded-md'>
-          <div className='flex flex-col md:flex-row justify-between md:items-center items-start space-y-4 flex-1'>
-            <label className='mr-8 block text-sm text-gray-900' htmlFor='fName'>
-              Full Name
-            </label>
-            <input
-              className='focus:ring-yellow-500 focus:border-yellow-500 shadow-sm sm:text-sm border-gray-300 rounded-md'
-              type='text'
-              name='fName'
-              placeholder='Your Full Name'
-              value={name}
-              id='fName'
-              autoComplete='given-name'
-              onChange={(e) => setName(e.target.value)}
-            />
+        <div className='grid grid-cols-1 gap-8 p-4 shadow-lg border border-yellow-500 rounded-md'>
+          <div className='flex flex-col md:flex-row justify-between md:items-center items-start'>
+            <div className='mr-3 space-y-3'>
+              <label
+                className='mr-8 block text-sm text-gray-900'
+                htmlFor='fName'
+              >
+                First Name
+              </label>
+              <input
+                className='focus:ring-yellow-500 focus:border-yellow-500 shadow-sm sm:text-sm border-gray-300 rounded-md'
+                type='text'
+                name='fName'
+                placeholder='Your First Name'
+                value={firstName}
+                id='fName'
+                autoComplete='given-name'
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div className='space-y-3'>
+              <label
+                className='mr-8 mt-3 md:mt-0 block text-sm text-gray-900'
+                htmlFor='fName'
+              >
+                Last Name
+              </label>
+              <input
+                className='focus:ring-yellow-500 focus:border-yellow-500 shadow-sm sm:text-sm border-gray-300 rounded-md'
+                type='text'
+                name='fName'
+                placeholder='Your Last Name'
+                value={lastname}
+                id='fName'
+                autoComplete='given-name'
+                onChange={(e) => setLastname(e.target.value)}
+              />
+            </div>
           </div>
-          <div className='flex flex-col md:flex-row justify-between md:items-center items-start space-y-4'>
+          <div className='flex flex-col md:flex-row justify-around md:items-center items-start'>
             <label className='mr-8 block text-sm text-gray-900' htmlFor='eMail'>
               Email Address
             </label>
             <input
-              className='focus:ring-yellow-500 focus:border-yellow-500 shadow-sm sm:text-sm border-gray-300 rounded-md'
+              className='focus:ring-yellow-500 focus:border-yellow-500 shadow-sm sm:text-sm border-gray-300 rounded-md flex flex-1'
               type='text'
               name='eMail'
-              placeholder='Your email address (Optional)'
+              placeholder='Your email address'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className='flex flex-col md:flex-row justify-between md:items-center items-start space-y-4'>
+          <div className='flex flex-col md:flex-row justify-around md:items-center items-start'>
             <label
               className='mr-8 block text-sm text-gray-900'
               htmlFor='pNumber'
@@ -97,7 +125,7 @@ const App = () => {
               Phone Number
             </label>
             <input
-              className='focus:ring-yellow-500 focus:border-yellow-500 shadow-sm sm:text-sm border-gray-300 rounded-md'
+              className='focus:ring-yellow-500 focus:border-yellow-500 shadow-sm sm:text-sm border-gray-300 rounded-md flex flex-1'
               type='tel'
               name='pNumber'
               value={phone}
@@ -105,7 +133,7 @@ const App = () => {
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
-          <div className='flex flex-col md:flex-row justify-between md:items-center items-start space-y-4'>
+          <div className='flex flex-col md:flex-row justify-around md:items-center items-start'>
             <label
               className='mr-8 block text-sm text-gray-900'
               htmlFor='amount'
@@ -113,7 +141,7 @@ const App = () => {
               Amount(GHC)
             </label>
             <input
-              className='focus:ring-yellow-500 focus:border-yellow-500 shadow-sm sm:text-sm border-gray-300 rounded-md'
+              className='focus:ring-yellow-500 focus:border-yellow-500 shadow-sm sm:text-sm border-gray-300 rounded-md flex flex-1'
               type='text'
               name='amount'
               value={amountRow}
