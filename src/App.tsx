@@ -54,12 +54,14 @@ const App = () => {
 
   return (
     <>
-      {/* <div>
-        <h1>Welcome</h1>
-      </div> */}
-      <div className='flex justify-center items-center h-screen font-sans'>
-        <div className='grid grid-cols-1 gap-8 shadow-lg p-10'>
-          <div className='flex justify-between items-center flex-1'>
+      <div className='flex  flex-col justify-center items-center h-screen font-sans'>
+        <div className='flex justify-center py-3'>
+          <h1 className='text-3xl font-black bg-slate-700 p-4 rounded text-white shadow-xl'>
+            CEC <span className='text-yellow-500'>ADENTA</span>
+          </h1>
+        </div>
+        <div className='grid grid-cols-1 gap-8 shadow-lg p-4'>
+          <div className='flex flex-col md:flex-row justify-between md:items-center items-start space-y-4 flex-1'>
             <label className='mr-8 block text-sm text-gray-900' htmlFor='fName'>
               Full Name
             </label>
@@ -74,7 +76,7 @@ const App = () => {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className='flex justify-between items-center'>
+          <div className='flex flex-col md:flex-row justify-between md:items-center items-start space-y-4'>
             <label className='mr-8 block text-sm text-gray-900' htmlFor='eMail'>
               Email Address
             </label>
@@ -87,7 +89,7 @@ const App = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className='flex justify-between items-center'>
+          <div className='flex flex-col md:flex-row justify-between md:items-center items-start space-y-4'>
             <label
               className='mr-8 block text-sm text-gray-900'
               htmlFor='pNumber'
@@ -103,7 +105,7 @@ const App = () => {
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
-          <div className='flex justify-between items-center'>
+          <div className='flex flex-col md:flex-row justify-between md:items-center items-start space-y-4'>
             <label
               className='mr-8 block text-sm text-gray-900'
               htmlFor='amount'
@@ -120,7 +122,7 @@ const App = () => {
             />
           </div>
 
-          <div className='flex justify-center items-center'>
+          <div className='flex justify-center items-center  space-y-4'>
             <PaystackHookExample />
           </div>
         </div>
