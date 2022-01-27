@@ -41,7 +41,7 @@ const App = () => {
     return (
       <div>
         <button
-          className='bg-yellow-400 py-2 px-6 rounded-md shadow-lg text-gray-100 uppercase font-medium'
+          className='bg-yellow-500 py-2 px-6 rounded-md shadow-lg text-gray-100 uppercase font-medium'
           onClick={() => {
             initializePayment(onSuccess, onClose);
           }}
